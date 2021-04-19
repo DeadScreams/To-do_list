@@ -4,11 +4,14 @@ const path = require('path')
 const app = express()
 const router = express.Router()
 const port = 3000
+const hostname = "0.0.0.0"
 
-router.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname+'/front/index.html'))
+const tasks = [{"id":1,"text":"abra","done":true}, {"id":2,"text":"abra","done":true}, {"id":3,"text":"abra","done":true}]
+
+router.get('/api/tasks', (req,res) => {
+    res.send(JSON.stringify({tasks : tasks}))
 })
 
 app.use('/', router)
-app.listen(port);
+app.listen(port, hostname);
 
