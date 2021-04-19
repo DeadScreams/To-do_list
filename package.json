@@ -26,15 +26,12 @@
   },
   "homepage": "https://github.com/DeadScreams/To-do_list#readme",
   "dependencies": {
-<<<<<<< HEAD
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
     "express": "^4.17.1",
-    "sqlite3": "^5.0.2"
-=======
+    "sqlite3": "^5.0.2",
     "express": "^4.17.1",
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2"
->>>>>>> f6edd514a67f5b3e65776baf6580faa175e664f4
   }
 }
