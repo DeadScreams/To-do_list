@@ -10,8 +10,8 @@ const tasks = [{"id":1,"text":"abra","done":true}, {"id":2,"text":"abra","done":
 
 router.get('/api/tasks', (req,res) => {
     res.send(JSON.stringify({tasks : tasks}))
+    console.log(req.query.id)
 })
 
 app.use('/', router)
-app.listen(port, hostname);
-
+app.listen(port, hostname, () => console.log("Server Up"))
