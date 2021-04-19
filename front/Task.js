@@ -6,44 +6,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TestElement = function (_React$Component) {
-    _inherits(TestElement, _React$Component);
+module.exports = function (_react$Component) {
+    _inherits(Task, _react$Component);
 
-    function TestElement(props) {
-        _classCallCheck(this, TestElement);
+    function Task(props) {
+        _classCallCheck(this, Task);
 
-        var _this = _possibleConstructorReturn(this, (TestElement.__proto__ || Object.getPrototypeOf(TestElement)).call(this, props));
-
-        _this.state = { text: "hahaha" };
-        return _this;
+        return _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this, props));
     }
 
-    _createClass(TestElement, [{
+    _createClass(Task, [{
         key: "render",
         value: function render() {
-            var _this2 = this;
-
-            return React.createElement(
-                "div",
-                { className: "test-element" },
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.text
-                ),
-                React.createElement(
-                    "button",
-                    { onClick: function onClick() {
-                            _this2.setState({ text: "no" });
-                        } },
-                    "Click me!"
-                )
-            );
+            return React.createElement("div", null);
         }
     }]);
 
-    return TestElement;
-}(React.Component);
-
-var element = document.querySelector("#wrapper");
-ReactDOM.render(React.createElement(TestElement, null), element);
+    return Task;
+}(react.Component);
