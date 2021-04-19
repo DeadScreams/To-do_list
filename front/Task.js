@@ -6,21 +6,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-module.exports = function (_react$Component) {
-    _inherits(Task, _react$Component);
+var Task = function (_React$Component) {
+    _inherits(Task, _React$Component);
 
     function Task(props) {
         _classCallCheck(this, Task);
 
-        return _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this, props));
+
+        _this.state = { todo: props.todo };
+        return _this;
     }
 
     _createClass(Task, [{
         key: "render",
         value: function render() {
-            return React.createElement("div", null);
+            return React.createElement(
+                "div",
+                { className: "task" },
+                React.createElement(
+                    "li",
+                    { className: "task-content", key: this.state.todo.id.toString() },
+                    React.createElement(
+                        "div",
+                        { className: "task-text" },
+                        this.state.todo.text
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "task-done" },
+                        this.state.todo.done ? "(done!)" : "(todo!)"
+                    )
+                )
+            );
         }
     }]);
 
     return Task;
-}(react.Component);
+}(React.Component);
+
+// export default Task;

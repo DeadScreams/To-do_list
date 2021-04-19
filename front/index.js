@@ -6,44 +6,48 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TestElement = function (_React$Component) {
-    _inherits(TestElement, _React$Component);
+// const TaskList = import('./TaskList.js')
+// import('./TaskList.js')
+// import { TaskList } from './TaskList.js'
+// import TaskList from './TaskList.js'
+// const TaskList = React.lazy(() => import('./TaskList.js'))
 
-    function TestElement(props) {
-        _classCallCheck(this, TestElement);
+var App = function (_React$Component) {
+    _inherits(App, _React$Component);
 
-        var _this = _possibleConstructorReturn(this, (TestElement.__proto__ || Object.getPrototypeOf(TestElement)).call(this, props));
+    function App(props) {
+        _classCallCheck(this, App);
 
-        _this.state = { text: "hahaha" };
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+        _this.state = { todos: props.todos };
         return _this;
     }
 
-    _createClass(TestElement, [{
+    _createClass(App, [{
         key: "render",
         value: function render() {
-            var _this2 = this;
-
             return React.createElement(
                 "div",
-                { className: "test-element" },
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.text
-                ),
-                React.createElement(
-                    "button",
-                    { onClick: function onClick() {
-                            _this2.setState({ text: "no" });
-                        } },
-                    "Click me!"
-                )
+                { className: "app" },
+                React.createElement(TaskList, { todos: this.state.todos })
             );
         }
     }]);
 
-    return TestElement;
+    return App;
 }(React.Component);
 
-var element = document.querySelector("#wrapper");
-ReactDOM.render(React.createElement(TestElement, null), element);
+var todos = [{ id: 1, text: "Learn React!", done: false }, { id: 2, text: "Learn NodeJS!", done: true }, { id: 3, text: "Learn to Code!", done: true }];
+// var todos;
+
+// const response = await fetch(new URL('http://localhost:3000/api/tasks'));
+// if (response.ok) {
+//     todos = await response.json();
+// }
+// else {
+//     alert('HTTP Error: ' + response.status);
+// }
+
+var wrapper = document.querySelector("#wrapper");
+ReactDOM.render(React.createElement(App, { todos: todos }), wrapper);

@@ -1,18 +1,38 @@
-class TestElement extends React.Component {
+// const TaskList = import('./TaskList.js')
+// import('./TaskList.js')
+// import { TaskList } from './TaskList.js'
+// import TaskList from './TaskList.js'
+// const TaskList = React.lazy(() => import('./TaskList.js'))
+
+class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { text: "hahaha" };
+        this.state = { todos: props.todos };
     }
 
     render() {
         return (
-            <div className="test-element">
-                <p>{this.state.text}</p>
-                <button onClick={() => { this.setState({ text: "no" }) }}>Click me!</button>
+            <div className="app">
+                <TaskList todos={this.state.todos}/>
             </div>
         )
     }
 }
 
-var element = document.querySelector("#wrapper");
-ReactDOM.render(<TestElement />, element);
+const todos = [
+    {id: 1, text: "Learn React!", done: false},
+    {id: 2, text: "Learn NodeJS!", done: true},
+    {id: 3, text: "Learn to Code!", done: true}
+]
+// var todos;
+
+// const response = await fetch(new URL('http://localhost:3000/api/tasks'));
+// if (response.ok) {
+//     todos = await response.json();
+// }
+// else {
+//     alert('HTTP Error: ' + response.status);
+// }
+
+var wrapper = document.querySelector("#wrapper");
+ReactDOM.render(<App todos={todos} />, wrapper);
