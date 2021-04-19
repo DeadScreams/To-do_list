@@ -1,0 +1,27 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "a test node/react collab app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deadscreams/to-do_list.git"
+  },
+  "keywords": [
+    "react",
+    "nodejs",
+    "javascript",
+    "todolist",
+    "todo"
+  ],
+  "author": "Evoleo&DeadScream",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deadscreams/to-do_list/issues"
+  },
+  "homepage": "https://github.com/deadscreams/to-do_list#readme"
+}
