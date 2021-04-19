@@ -17,12 +17,18 @@ class Database_Worker {
     }
 
     async excute_request_all(query){
-        this.db.all(query, [], (err, rows) => {
-            if (err) {
-                throw err
-            }
-            return rows
+        var promise = new Promise((resolve, reject) => {
+            this.db.all(query, [], (err, rows) => {
+                if (err) {
+                    reject(err);
+                    throw err
+                }
+                // return rows
+                resolve(rows);
+            })
         })
+
+        return promise;
     }
 
     close_database(){
@@ -40,5 +46,8 @@ class Database_Worker {
 let sql = `SELECT * FROM tasks;`
 
 const Worker = new Database_Worker("db.db")
-console.log(Worker.excute_request_all(sql))
-Worker.close_database()
+// console.log(Worker.excute_request_all(sql))
+Worker.excute_request_all(sql).then(rows => {
+    console.log(rows);
+    Worker.close_database()
+})
