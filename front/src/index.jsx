@@ -7,7 +7,43 @@
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { todos: props.todos };
+
+        // var todos = [
+        //     {id: 1, text: "Learn React!", done: false},
+        //     {id: 2, text: "Learn NodeJS!", done: true},
+        //     {id: 3, text: "Learn to Code!", done: true}
+        // ]
+        // var todos = [];
+
+        // this.state = { todos: todos };
+
+        // fetch(new URL('http://localhost:3000/api/tasks'))
+        //     .then((result) => {
+        //         return result.json();
+        //     })
+        //     .then((data) => {
+        //         todos = data;
+        //         this.setState({ todos: todos }, () => {
+        //             console.log('Updated state!');
+        //             console.log(this.state);
+        //         })
+        //         console.log('Received data! ');
+        //         console.log(data);
+        //         // this.state = {todos: todos};
+        //     })
+        //     .catch((error) => {
+        //         alert('HTTP Error: ' + error);
+        //         console.error(error);
+        //     })
+        (async function() {
+            const response = await fetch(new URL('http://localhost:3000/api/tasks'));
+            if (response.ok) {
+                this.state = { todos: await response.json() };
+            }
+            else {
+                alert('HTTP Error: ' + response.status);
+            }
+        })()
     }
 
     render() {
@@ -19,20 +55,8 @@ class App extends React.Component {
     }
 }
 
-const todos = [
-    {id: 1, text: "Learn React!", done: false},
-    {id: 2, text: "Learn NodeJS!", done: true},
-    {id: 3, text: "Learn to Code!", done: true}
-]
-// var todos;
-
-// const response = await fetch(new URL('http://localhost:3000/api/tasks'));
-// if (response.ok) {
-//     todos = await response.json();
-// }
-// else {
-//     alert('HTTP Error: ' + response.status);
-// }
 
 var wrapper = document.querySelector("#wrapper");
-ReactDOM.render(<App todos={todos} />, wrapper);
+var app = <App />;
+
+ReactDOM.render(app, wrapper);

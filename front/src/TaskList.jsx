@@ -8,6 +8,8 @@ class TaskList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {todos: props.todos};
+        console.log('TaskList todos: ')
+        console.log(this.state.todos);
     }
 
     render() {
@@ -17,6 +19,7 @@ class TaskList extends React.Component {
             // items.push(<li key={"todo#"+index}>{value}</li>)
             items.push(<Task key={todo.id} todo={todo} />);
         }
+        // console.log('TaskList is rendered');
 
         return <div className="task-list">{ items }</div>;
     }

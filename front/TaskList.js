@@ -23,6 +23,8 @@ var TaskList = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (TaskList.__proto__ || Object.getPrototypeOf(TaskList)).call(this, props));
 
         _this.state = { todos: props.todos };
+        console.log('TaskList todos: ');
+        console.log(_this.state.todos);
         return _this;
     }
 
@@ -47,6 +49,7 @@ var TaskList = function (_React$Component) {
                     // items.push(<li key={"todo#"+index}>{value}</li>)
                     items.push(React.createElement(Task, { key: todo.id, todo: todo }));
                 }
+                // console.log('TaskList is rendered');
             } catch (err) {
                 _didIteratorError = true;
                 _iteratorError = err;
