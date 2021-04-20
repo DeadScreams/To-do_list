@@ -41,13 +41,13 @@ class Database_Worker {
 
 module.exports = Database_Worker
 
-//et sql = `CREATE TABLE tasks (Id int, Text varchar(250), Done BIT, UNIQUE (Id));`
-let sql = `INSERT OR IGNORE INTO tasks VALUES (1, "hi", 0);`
-let select_all = `SELECT * FROM tasks`
+//let sql = `CREATE TABLE tasks (Id varchar(250), Text varchar(250), Done BIT, UNIQUE (Id));`
+// let sql = `INSERT OR IGNORE INTO tasks VALUES (1, "hi", 0);`
+// let select_all = `SELECT * FROM tasks`
 
-const Worker = new Database_Worker("db.db")
-Worker.excute_request(sql)
-Worker.excute_request_all(select_all).then(rows => {
-    console.log(rows);
-    Worker.close_database()
-})
+// const Worker = new Database_Worker("db.db")
+// //Worker.excute_request(sql)
+// Worker.excute_request_all(select_all).then(rows => {
+//     console.log(rows);
+//     Worker.close_database()
+// })
