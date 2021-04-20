@@ -15,7 +15,6 @@ class Database_Worker {
             if (err) throw err;
         })
     }
-
     async excute_request_all(query){
         var promise = new Promise((resolve, reject) => {
             this.db.all(query, [], (err, rows) => {
@@ -23,7 +22,6 @@ class Database_Worker {
                     reject(err);
                     throw err
                 }
-                // return rows
                 resolve(rows);
             })
         })
@@ -41,13 +39,15 @@ class Database_Worker {
     }
 }
 
+module.exports = Database_Worker
 
-// let sql = `INSERT INTO tasks VALUES(1, "Win ban", 0);`
-let sql = `SELECT * FROM tasks;`
+//et sql = `CREATE TABLE tasks (Id int, Text varchar(250), Done BIT, UNIQUE (Id));`
+let sql = `INSERT OR IGNORE INTO tasks VALUES (1, "hi", 0);`
+let select_all = `SELECT * FROM tasks`
 
 const Worker = new Database_Worker("db.db")
-// console.log(Worker.excute_request_all(sql))
-Worker.excute_request_all(sql).then(rows => {
+Worker.excute_request(sql)
+Worker.excute_request_all(select_all).then(rows => {
     console.log(rows);
     Worker.close_database()
 })
