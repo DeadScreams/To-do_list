@@ -41,14 +41,14 @@ var App = function (_React$Component) {
             fetch(new URL('http://localhost:3000/api/tasks')).then(function (result) {
                 return result.json();
             }).then(function (data) {
-                tasks = data.tasks;
+                var tasks = data.tasks;
                 _this2.setState({ tasks: tasks });
                 console.log('Received data! ');
                 console.log(data);
                 // this.state = {tasks: tasks};
             }).catch(function (error) {
                 // alert('HTTP Error: ' + error);
-                tasks = [];
+                _this2.setState({ tasks: [] });
                 console.error(error);
             });
         }

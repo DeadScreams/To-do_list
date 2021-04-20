@@ -22,7 +22,7 @@ router.get('/api/tasks', (req,res) => {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
     DataWorker.excute_request_all("SELECT * FROM tasks").then(rows => {
-        res.send(rows)
+        res.send({ tasks: rows })
     })
 })
 
@@ -50,8 +50,14 @@ router.get('/api/db_visual', (req, res) => {
 
 // run once
 router.get('/api/init_table', (req, res) => {
-    DataWorker.excute_request("CREATE TABLE tasks (Id varchar(250), Text varchar(250), Done BIT, UNIQUE (Id));")
+    DataWorker.excute_request("CREATE TABLE tasks (id varchar(250), text varchar(250), done BIT, UNIQUE (id));")
     res.sendStatus(200);
+})
+
+router.get('/api/drop_the_fucking_table', (req, res) => {
+    DataWorker.excute_request("DROP TABLE tasks;");
+    // res.sendStatus(200);
+    res.send('HAHAHA CRIME COMMITED SUCCESSFULLY!!!');
 })
 
 app.use('/', router)

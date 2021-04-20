@@ -14,7 +14,7 @@ class Task extends React.Component {
         classes = classes.join(" ");
 
         return (
-            <li className={classes} key={this.props.todo.id.toString()}>
+            <li className={classes} key={this.props.todo.id}>
                 <div className="task-content">
                     <div className="task-text">{ this.props.todo.text }</div>
                     <div className="task-done">{ this.props.todo.done ? "(done!)" : "(todo!)"}</div>

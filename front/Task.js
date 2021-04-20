@@ -29,7 +29,7 @@ var Task = function (_React$Component) {
 
             return React.createElement(
                 "li",
-                { className: classes, key: this.props.todo.id.toString() },
+                { className: classes, key: this.props.todo.id },
                 React.createElement(
                     "div",
                     { className: "task-content" },

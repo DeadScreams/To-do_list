@@ -24,7 +24,7 @@ class App extends React.Component {
                 return result.json();
             })
             .then((data) => {
-                tasks = data.tasks;
+                var tasks = data.tasks;
                 this.setState({ tasks: tasks })
                 console.log('Received data! ');
                 console.log(data);
@@ -32,7 +32,7 @@ class App extends React.Component {
             })
             .catch((error) => {
                 // alert('HTTP Error: ' + error);
-                tasks = [];
+                this.setState({ tasks: [] })
                 console.error(error);
             })
     }
