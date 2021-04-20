@@ -10,6 +10,7 @@ const router = express.Router()
 const port = 3000
 const hostname = "0.0.0.0"
 
+
 const DataWorker = new Database_Worker("db.db")
 
 // const tasks = [
@@ -17,6 +18,8 @@ const DataWorker = new Database_Worker("db.db")
 //     {"id": 2, "text": "Learn JS!", "done": false},
 //     {"id": 3, "text": "Learn to Code!", "done": true},
 // ]
+
+app.use(express.static('front'));
 
 router.get('/api/tasks', (req,res) => {
     res.setHeader('Content-Type', 'application/json');
@@ -41,23 +44,13 @@ router.post('/api/delete_task/:id', (req,res) => {
     res.sendStatus(200)
 })
 
-router.get('/api/db_visual', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    DataWorker.excute_request_all("SELECT * FROM tasks").then(rows => {
-        res.send(rows)
-    })
-})
-
-// run once
 router.get('/api/init_table', (req, res) => {
-    DataWorker.excute_request("CREATE TABLE tasks (id varchar(250), text varchar(250), done BIT, UNIQUE (id));")
+    DataWorker.excute_request("CREATE TABLE IF NOT EXISTS tasks (id varchar(250), text varchar(250), done BIT, UNIQUE (id));")
     res.sendStatus(200);
 })
 
-router.get('/api/drop_the_fucking_table', (req, res) => {
-    DataWorker.excute_request("DROP TABLE tasks;");
-    // res.sendStatus(200);
-    res.send('HAHAHA CRIME COMMITED SUCCESSFULLY!!!');
+router.get('/', (req,res) => {
+    res.sendFile(__dirname+"/front/index.html")
 })
 
 app.use('/', router)
