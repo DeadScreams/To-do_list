@@ -19,6 +19,7 @@ var Task = function (_React$Component) {
         _this.renameTask = _this.props.renameTask.bind(_this);
 
         _this.handleRename = _this.handleRename.bind(_this);
+        _this.handlePencil = _this.handlePencil.bind(_this);
 
         _this.state = { editing: false, text: '' };
         return _this;
@@ -28,6 +29,19 @@ var Task = function (_React$Component) {
         key: "handleRename",
         value: function handleRename(event) {
             this.setState({ text: event.target.value });
+        }
+    }, {
+        key: "handlePencil",
+        value: function handlePencil() {
+            // when clicked on pencil
+            if (this.state.editing) {
+                // stop editing
+                this.renameTask(this.props.todo.id, this.state.text);
+                this.setState({ editing: false });
+            } else {
+                // start editing
+                this.setState({ editing: true, text: this.props.todo.text });
+            }
         }
     }, {
         key: "render",
@@ -64,17 +78,7 @@ var Task = function (_React$Component) {
                         { className: "task-rename" },
                         React.createElement(
                             "button",
-                            { className: "btn-rename", onClick: function onClick() {
-                                    if (_this2.state.editing) {
-                                        // stop editing
-                                        _this2.renameTask(_this2.props.todo.id, _this2.state.text);
-                                        _this2.state.editing = false;
-                                    } else {
-                                        // start editing
-                                        _this2.state.editing = true;
-                                        _this2.state.text = _this2.props.todo.text;
-                                    }
-                                } },
+                            { className: "btn-rename", onClick: this.handlePencil },
                             "\u270E"
                         )
                     ),

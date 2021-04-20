@@ -42,7 +42,7 @@ router.post('/api/delete_task/:id', (req,res) => {
     res.sendStatus(200)
 })
 
-router.post('/api/edit_task/:id', (req,res) => {
+router.post('/api/update_task/:id', (req,res) => {
     if(req.query.text === undefined){
         return res.sendStatus(400)
     }

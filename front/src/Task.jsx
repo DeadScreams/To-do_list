@@ -7,12 +7,23 @@ class Task extends React.Component {
         this.renameTask = this.props.renameTask.bind(this);
 
         this.handleRename = this.handleRename.bind(this);
+        this.handlePencil = this.handlePencil.bind(this);
 
         this.state = { editing: false, text: '' };
     }
 
     handleRename(event) {
         this.setState({ text: event.target.value });
+    }
+
+    handlePencil() { // when clicked on pencil
+        if (this.state.editing) { // stop editing
+            this.renameTask(this.props.todo.id, this.state.text);
+            this.setState({editing: false});
+        }
+        else { // start editing
+            this.setState({ editing: true, text: this.props.todo.text });
+        }
     }
 
     render() {
@@ -34,16 +45,7 @@ class Task extends React.Component {
                     }</div>
                 <div className="task-done">{ this.props.todo.done ? "(done!)" : "(todo!)"}</div>
                 <div className="task-rename">
-                    <button className="btn-rename" onClick={() => {
-                        if (this.state.editing) { // stop editing
-                            this.renameTask(this.props.todo.id, this.state.text);
-                            this.state.editing = false;
-                        }
-                        else { // start editing
-                            this.state.editing = true;
-                            this.state.text = this.props.todo.text;
-                        }
-                    }}>✎</button>
+                    <button className="btn-rename" onClick={this.handlePencil}>✎</button>
                 </div>
                 <div className="task-check">
                     <button className="btn-check" onClick={() => { this.checkTask(this.props.todo.id) }}>✓</button>
