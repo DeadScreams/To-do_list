@@ -42,7 +42,8 @@ var Task = function (_React$Component) {
                         "div",
                         { className: "task-done" },
                         this.props.todo.done ? "(done!)" : "(todo!)"
-                    )
+                    ),
+                    React.createElement("div", { className: "task-delete" })
                 )
             );
         }

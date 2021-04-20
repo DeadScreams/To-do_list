@@ -18,6 +18,7 @@ class Task extends React.Component {
                 <div className="task-content">
                     <div className="task-text">{ this.props.todo.text }</div>
                     <div className="task-done">{ this.props.todo.done ? "(done!)" : "(todo!)"}</div>
+                    <div className="task-delete"></div>
                 </div>
             </li>
         )
