@@ -42,6 +42,22 @@ router.post('/api/delete_task/:id', (req,res) => {
     res.sendStatus(200)
 })
 
+router.post('/api/edit_task/:id', (req,res) => {
+    if(req.query.text === undefined){
+        return res.sendStatus(400)
+    }
+    else if(req.query.done === undefined){
+        return res.sendStatus(400)
+    }
+    else{
+        var id = req.params.id
+        var name = req.query.text
+        var done = req.query.done
+        res.sendStatus(200)
+        DataWorker.excute_request('UPDATE tasks SET text="'+name+'", done='+done+' WHERE id ="'+id+'";')
+    }
+})
+
 router.get('/api/init_table', (req, res) => {
     DataWorker.excute_request("CREATE TABLE IF NOT EXISTS tasks (id varchar(250), text varchar(250), done BIT, UNIQUE (id));")
     res.sendStatus(200);
