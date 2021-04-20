@@ -21,7 +21,7 @@ _A small project for two days😃_
 ---
 
 ## Let's add in the future
-* Nice designe🖌️
+* Nice design🖌️
 * Users🧑‍🤝‍🧑
 * Task Boards📋
 
