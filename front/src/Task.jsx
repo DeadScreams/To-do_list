@@ -1,17 +1,25 @@
 class Task extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { todo: props.todo };
     }
 
     render() {
+        var classes = [];
+
+        classes.push("task");
+        if (this.props.todo.done) {
+            classes.push("done");
+        }
+
+        classes = classes.join(" ");
+
         return (
-            <div className="task">
-                <li className="task-content" key={this.state.todo.id.toString()}>
-                    <div className="task-text">{ this.state.todo.text }</div>
-                    <div className="task-done">{ this.state.todo.done ? "(done!)" : "(todo!)"}</div>
-                </li>
-            </div>
+            <li className={classes} key={this.props.todo.id.toString()}>
+                <div className="task-content">
+                    <div className="task-text">{ this.props.todo.text }</div>
+                    <div className="task-done">{ this.props.todo.done ? "(done!)" : "(todo!)"}</div>
+                </div>
+            </li>
         )
     }
 }

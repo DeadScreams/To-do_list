@@ -7,19 +7,14 @@
 class TaskList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {todos: props.todos};
-        console.log('TaskList todos: ')
-        console.log(this.state.todos);
     }
 
     render() {
         const items = [];
 
-        for(var [index, todo] of this.state.todos.entries()) {
-            // items.push(<li key={"todo#"+index}>{value}</li>)
+        for(var [index, todo] of this.props.todos.entries()) {
             items.push(<Task key={todo.id} todo={todo} />);
         }
-        // console.log('TaskList is rendered');
 
         return <div className="task-list">{ items }</div>;
     }
