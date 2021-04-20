@@ -25,8 +25,8 @@ class AddTask extends React.Component {
     render() {
         return (
             <div className="add-tasks">
-                <input type="text" value={this.state.text} onChange={this.handleChange} />
-                <button onClick={this.handleSubmit}>Add task!</button>
+                <input className="txt-add" type="text" value={this.state.text} onChange={this.handleChange} />
+                <button className="btn-add" onClick={this.handleSubmit}>+</button>
             </div>
         )
     }
