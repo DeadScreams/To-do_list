@@ -26,6 +26,7 @@ router.get('/api/tasks', (req,res) => {
 })
 
 router.post('/api/add_task', (req,res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     var name = req.query.text
     res.sendStatus(200)
     var id = crypto.randomBytes(8).toString('hex');
@@ -33,12 +34,14 @@ router.post('/api/add_task', (req,res) => {
 })
 
 router.post('/api/delete_task/:id', (req,res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     var id = req.params.id
     DataWorker.excute_request('DELETE FROM tasks WHERE id="'+id+'";')
     res.sendStatus(200)
 })
 
 router.get('/api/db_visual', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     DataWorker.excute_request_all("SELECT * FROM tasks").then(rows => {
         res.send(rows)
     })
