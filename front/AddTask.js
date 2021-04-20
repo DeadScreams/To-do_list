@@ -34,6 +34,7 @@ var AddTask = function (_React$Component) {
             var text = this.state.text.trim();
             if (text != '') {
                 this.addTask(text);
+                this.setState({ text: '' });
             }
         }
     }, {

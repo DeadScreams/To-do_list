@@ -20,7 +20,11 @@ var TaskList = function (_React$Component) {
     function TaskList(props) {
         _classCallCheck(this, TaskList);
 
-        return _possibleConstructorReturn(this, (TaskList.__proto__ || Object.getPrototypeOf(TaskList)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (TaskList.__proto__ || Object.getPrototypeOf(TaskList)).call(this, props));
+
+        _this.checkTask = props.checkTask.bind(_this);
+        _this.deleteTask = props.deleteTask.bind(_this);
+        return _this;
     }
 
     _createClass(TaskList, [{
@@ -41,7 +45,7 @@ var TaskList = function (_React$Component) {
                     var index = _ref2[0];
                     var todo = _ref2[1];
 
-                    items.push(React.createElement(Task, { key: todo.id, todo: todo }));
+                    items.push(React.createElement(Task, { key: todo.id, todo: todo, deleteTask: this.deleteTask, checkTask: this.checkTask }));
                 }
             } catch (err) {
                 _didIteratorError = true;

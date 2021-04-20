@@ -48,6 +48,7 @@ router.get('/api/db_visual', (req, res) => {
     })
 })
 
+
 // run once
 router.get('/api/init_table', (req, res) => {
     DataWorker.excute_request("CREATE TABLE tasks (id varchar(250), text varchar(250), done BIT, UNIQUE (id));")
@@ -59,6 +60,7 @@ router.get('/api/drop_the_fucking_table', (req, res) => {
     // res.sendStatus(200);
     res.send('HAHAHA CRIME COMMITED SUCCESSFULLY!!!');
 })
+
 
 app.use('/', router)
 app.listen(port, hostname, () => console.log("Server Up"))
