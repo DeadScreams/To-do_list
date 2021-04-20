@@ -11,24 +11,17 @@ const hostname = "0.0.0.0"
 
 const DataWorker = new Database_Worker("db.db")
 
-// const tasks = [
-//     {"id": 1, "text": "Learn React!", "done": false},
-//     {"id": 2, "text": "Learn JS!", "done": false},
-//     {"id": 3, "text": "Learn to Code!", "done": true},
-// ]
 
 app.use(express.static('front'));
 
 router.get('/api/tasks', (req,res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'application/json')
     DataWorker.excute_request_all("SELECT * FROM tasks").then(rows => {
         res.send({ tasks: rows })
     })
 })
 
 router.post('/api/add_task', (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     var name = req.query.text
     res.sendStatus(200)
     var id = crypto.randomBytes(8).toString('hex');
@@ -36,7 +29,6 @@ router.post('/api/add_task', (req,res) => {
 })
 
 router.post('/api/delete_task/:id', (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     var id = req.params.id
     DataWorker.excute_request('DELETE FROM tasks WHERE id="'+id+'";')
     res.sendStatus(200)
@@ -61,10 +53,6 @@ router.post('/api/update_task/:id', (req,res) => {
 router.get('/api/init_table', (req, res) => {
     DataWorker.excute_request("CREATE TABLE IF NOT EXISTS tasks (id varchar(250), text varchar(250), done BIT, UNIQUE (id));")
     res.sendStatus(200);
-})
-
-router.get('/', (req,res) => {
-    res.sendFile(__dirname+"/front/index.html")
 })
 
 

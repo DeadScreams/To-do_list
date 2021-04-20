@@ -15,8 +15,7 @@
     margin: 10px;
 }
 
-.task.done {
-    /* font-weight: normal; */
+.task.done .task-content .task-text {
     text-decoration: line-through;
 }
 
