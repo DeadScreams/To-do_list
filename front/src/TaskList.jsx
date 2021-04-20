@@ -19,7 +19,7 @@ class TaskList extends React.Component {
             items.push(<Task key={todo.id} todo={todo} deleteTask={this.deleteTask} checkTask={this.checkTask} />);
         }
 
-        return <div className="task-list">{ items }</div>;
+        return <div className="task-list"><ol>{ items }</ol></div>;
     }
 }
 

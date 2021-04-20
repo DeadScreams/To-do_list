@@ -65,7 +65,11 @@ var TaskList = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "task-list" },
-                items
+                React.createElement(
+                    "ol",
+                    null,
+                    items
+                )
             );
         }
     }]);
