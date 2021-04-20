@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const Database_Worker= require('./db.js')
 const crypto = require('crypto');
+const { Console } = require('console');
 
 const app = express()
 const router = express.Router()
@@ -31,8 +32,10 @@ router.post('/api/add_task', (req,res) => {
     DataWorker.excute_request('INSERT OR IGNORE INTO tasks VALUES ("'+id+'", "'+name+'", 0);')
 })
 
-router.post('/api/delete_task', (req,res) => {
-    console.log(req.query.id)
+router.post('/api/delete_task/:id', (req,res) => {
+    var id = req.params.id
+    DataWorker.excute_request('DELETE FROM tasks WHERE id="'+id+'";')
+    res.sendStatus(200)
 })
 
 router.get('/api/db_visual', (req, res) => {
