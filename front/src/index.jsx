@@ -106,8 +106,8 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} checkTask={this.checkTask} />
                 <AddTask addTask={this.addTask} />
+                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} checkTask={this.checkTask} />
             </div>
         )
     }

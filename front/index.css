@@ -3,15 +3,12 @@
     height: 100%;
 }
 
-.task-list {
+.app {
     position: absolute;
     width: 50%;
     height: 75%;
     left: 25%;
     top: 20%;
-
-    /* display: flex;
-    flex-direction: column; */
 }
 
 .task {
@@ -38,4 +35,10 @@
 
 .task-check .task-delete {
     flex: 0.1;
+}
+
+.add-tasks {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
 }

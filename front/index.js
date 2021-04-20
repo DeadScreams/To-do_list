@@ -132,8 +132,8 @@ var App = function (_React$Component) {
             return React.createElement(
                 'div',
                 { className: 'app' },
-                React.createElement(TaskList, { tasks: this.state.tasks, deleteTask: this.deleteTask, checkTask: this.checkTask }),
-                React.createElement(AddTask, { addTask: this.addTask })
+                React.createElement(AddTask, { addTask: this.addTask }),
+                React.createElement(TaskList, { tasks: this.state.tasks, deleteTask: this.deleteTask, checkTask: this.checkTask })
             );
         }
     }]);

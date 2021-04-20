@@ -43,11 +43,11 @@ var AddTask = function (_React$Component) {
             return React.createElement(
                 'div',
                 { className: 'add-tasks' },
-                React.createElement('input', { type: 'text', value: this.state.text, onChange: this.handleChange }),
+                React.createElement('input', { className: 'txt-add', type: 'text', value: this.state.text, onChange: this.handleChange }),
                 React.createElement(
                     'button',
-                    { onClick: this.handleSubmit },
-                    'Add task!'
+                    { className: 'btn-add', onClick: this.handleSubmit },
+                    '+'
                 )
             );
         }
