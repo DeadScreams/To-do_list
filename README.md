@@ -6,8 +6,8 @@
 /    _ ||   `.'   | | \-.  \ |  |    |  |.-')   |'--...__( OO'  .-.  '  .-') ,`'--..._( OO'  .-.  '
 \  :` `.|         .-'-'  |  ||  |   _|  | OO )  '--.  .--/   |  | |  |_(  OO)|  |  \  /   |  | |  |
  '..`''.|  |'.'|  |\| |_.'  ||  |  / |  |`-' |     |  |  \_) |  |\|  (,------|  |   ' \_) |  |\|  |
-.-._)   |  |   |  | |  .-.  (|  '-/-/|  '---.'     |  |    \ |  | |  |'------|  |   / : \ |  | |  |
-\       |  |   |  | |  | |  ||    \/||      |      |  |     `'  '-'  '       |  '--'  /  `'  '-'  '
+.-._)   |  |   |  | |  .-.  (|  '--\_|  '---.'     |  |    \ |  | |  |'------|  |   / : \ |  | |  |
+\       |  |   |  | |  | |  ||      ||      |      |  |     `'  '-'  '       |  '--'  /  `'  '-'  '
  `-----'`--'   `--' `--' `--'`------'`------'      `--'       `-----'        `-------'     `-----'
 ```
 _A small project for two days😃_
@@ -28,4 +28,4 @@ _A small project for two days😃_
 ---
 
 ## Coloborating
-***It does not have a wide functionality, but if you want to modify it, then you can safely fork***
+It does not have a wide functionality, but if you want to modify it, then you can safely fork
