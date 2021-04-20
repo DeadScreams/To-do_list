@@ -16,38 +16,67 @@ var Task = function (_React$Component) {
 
         _this.deleteTask = _this.props.deleteTask.bind(_this);
         _this.checkTask = _this.props.checkTask.bind(_this);
+        _this.renameTask = _this.props.renameTask.bind(_this);
+
+        _this.handleRename = _this.handleRename.bind(_this);
+
+        _this.state = { editing: false, text: '' };
         return _this;
     }
 
     _createClass(Task, [{
+        key: "handleRename",
+        value: function handleRename(event) {
+            this.setState({ text: event.target.value });
+        }
+    }, {
         key: "render",
         value: function render() {
             var _this2 = this;
 
-            var classes = [];
+            var task_classes = [];
 
-            classes.push("task");
+            task_classes.push("task");
             if (this.props.todo.done) {
-                classes.push("done");
+                task_classes.push("done");
             }
 
-            classes = classes.join(" ");
+            task_classes = task_classes.join(" ");
 
             return React.createElement(
                 "li",
-                { className: classes, key: this.props.todo.id },
+                { className: task_classes, key: this.props.todo.id },
                 React.createElement(
                     "div",
                     { className: "task-content" },
                     React.createElement(
                         "div",
                         { className: "task-text" },
-                        this.props.todo.text
+                        this.state.editing ? React.createElement("input", { type: "text", value: this.state.text, onChange: this.handleRename }) : this.props.todo.text
                     ),
                     React.createElement(
                         "div",
                         { className: "task-done" },
                         this.props.todo.done ? "(done!)" : "(todo!)"
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "task-rename" },
+                        React.createElement(
+                            "button",
+                            { className: "btn-rename", onClick: function onClick() {
+                                    if (_this2.state.editing) {
+                                        // stop editing
+                                        _this2.renameTask(_this2.props.todo.id, _this2.state.text);
+                                        _this2.state.editing = false;
+                                    } else {
+                                        // start editing
+                                        _this2.state.editing = true;
+                                        _this2.state.text = _this2.props.todo.text;
+                                    }
+                                } },
+                            "\u270E"
+                        )
                     ),
                     React.createElement(
                         "div",

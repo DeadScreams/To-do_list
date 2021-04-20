@@ -12,12 +12,25 @@ class App extends React.Component {
         this.updateTasks = this.updateTasks.bind(this);
         this.deleteTask = this.deleteTask.bind(this);
         this.checkTask = this.checkTask.bind(this);
+        this.renameTask = this.renameTask.bind(this);
         this.findTask = this.findTask.bind(this);
 
-        var tasks = [];
-        this.state = { tasks: tasks };
+        this.state = { tasks: [] };
 
         this.updateTasks();
+
+        this.interval = null;
+    }
+
+    // fetch the tasks every 10 sec
+    componentDidMount() {
+        this.interval = setInterval(() => this.updateTasks(), 10000);
+    }
+    // clear the interval after yourself
+    componentWillUnmount() {
+        if (this.interval !== null) {
+            clearInterval(this.interval);
+        }
     }
 
     findTask(id) {
@@ -74,40 +87,46 @@ class App extends React.Component {
 
     checkTask(id) {
         var task = this.findTask(id);
-        var text = task.text;
-        var done = task.done;
-
         // alert('This should totally check the task id#'+id);
         task.done = !task.done;
         this.setState({ tasks: this.state.tasks });
 
-        // this.setState((prev_state, props) => {
-        //     return prev_state.map((task, i) => {
-        //         if (task.id === id) {
-        //             task.done = !task.done;
-        //         }
-        //         return task;
-        //     })
-        // });
+        fetch(new URL('http://localhost:3000/api/update_task/' + id+'/?text=' + task.text + '&done=' + task.done), {
+            method: 'POST'
+        }).then((response) => {
+            if (response.ok) {
+                console.log('Checked Task!');
+                this.updateTasks();
+            }
+            else {
+                console.log('HTTP Error: ' + response.status);
+            }
+        })
+    }
 
-        // fetch(new URL('http://localhost:3000/api/update_task/' + id+'/?text=' + text + '&done=' + done), {
-        //     method: 'POST'
-        // }).then((response) => {
-        //     if (response.ok) {
-        //         console.log('Checked Task!');
-        //         this.updateTasks();
-        //     }
-        //     else {
-        //         console.log('HTTP Error: ' + response.status);
-        //     }
-        // })
+    renameTask(id, new_text) {
+        var task = this.findTask(id);
+        task.text = new_text;
+        this.setState({ tasks: this.state.tasks });
+
+        fetch(new URL('http://localhost:3000/api/update_task/' + id+'/?text=' + task.text + '&done=' + task.done), {
+            method: 'POST'
+        }).then((response) => {
+            if (response.ok) {
+                console.log('Renamed Task!');
+                this.updateTasks();
+            }
+            else {
+                console.log('HTTP Error: ' + response.status);
+            }
+        })
     }
 
     render() {
         return (
             <div className="app">
                 <AddTask addTask={this.addTask} />
-                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} checkTask={this.checkTask} />
+                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} checkTask={this.checkTask} renameTask={this.renameTask} />
             </div>
         )
     }

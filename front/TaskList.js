@@ -24,6 +24,7 @@ var TaskList = function (_React$Component) {
 
         _this.checkTask = props.checkTask.bind(_this);
         _this.deleteTask = props.deleteTask.bind(_this);
+        _this.renameTask = props.renameTask.bind(_this);
         return _this;
     }
 
@@ -45,7 +46,7 @@ var TaskList = function (_React$Component) {
                     var index = _ref2[0];
                     var todo = _ref2[1];
 
-                    items.push(React.createElement(Task, { key: todo.id, todo: todo, deleteTask: this.deleteTask, checkTask: this.checkTask }));
+                    items.push(React.createElement(Task, { key: todo.id, todo: todo, deleteTask: this.deleteTask, checkTask: this.checkTask, renameTask: this.renameTask }));
                 }
             } catch (err) {
                 _didIteratorError = true;
