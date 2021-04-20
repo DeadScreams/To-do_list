@@ -3,15 +3,35 @@
     height: 100%;
 }
 
-.task {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+.task-list {
+    position: absolute;
+    width: 50%;
+    height: 75%;
+    left: 25%;
+    top: 20%;
 
-    /* color: white; */
+    /* display: flex;
+    flex-direction: column; */
 }
 
-li.task-content {
-    /* display: block; */
+.task {
+    margin: 10px;
+}
+
+.task.done {
+    /* font-weight: normal; */
+    text-decoration: line-through;
+}
+
+.task-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.task-text {
     flex: 1;
+}
+
+.task-done {
+    flex: 0.3;
 }

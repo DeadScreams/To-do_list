@@ -13,42 +13,36 @@ class App extends React.Component {
         //     {id: 2, text: "Learn NodeJS!", done: true},
         //     {id: 3, text: "Learn to Code!", done: true}
         // ]
-        // var todos = [];
+        var todos = [];
 
-        // this.state = { todos: todos };
+        this.state = { todos: todos };
 
-        // fetch(new URL('http://localhost:3000/api/tasks'))
-        //     .then((result) => {
-        //         return result.json();
-        //     })
-        //     .then((data) => {
-        //         todos = data;
-        //         this.setState({ todos: todos }, () => {
-        //             console.log('Updated state!');
-        //             console.log(this.state);
-        //         })
-        //         console.log('Received data! ');
-        //         console.log(data);
-        //         // this.state = {todos: todos};
-        //     })
-        //     .catch((error) => {
-        //         alert('HTTP Error: ' + error);
-        //         console.error(error);
-        //     })
-        (async function() {
-            const response = await fetch(new URL('http://localhost:3000/api/tasks'));
-            if (response.ok) {
-                this.state = { todos: await response.json() };
-            }
-            else {
-                alert('HTTP Error: ' + response.status);
-            }
-        })()
+        fetch(new URL('http://localhost:3000/api/tasks'))
+            .then((result) => {
+                return result.json();
+            })
+            .then((data) => {
+                todos = data.tasks;
+                this.setState({ todos: todos })
+                console.log('Received data! ');
+                console.log(data);
+                // this.state = {todos: todos};
+            })
+            .catch((error) => {
+                alert('HTTP Error: ' + error);
+                console.error(error);
+            })
     }
 
     render() {
+        // const items = [];
+        // this.state.todos.forEach((todo) => {
+        //     items.push(<p key={todo.id}>{todo.text}</p>);
+        // })
+
         return (
             <div className="app">
+                {/* <p> {items} </p> */}
                 <TaskList todos={this.state.todos}/>
             </div>
         )

@@ -12,30 +12,36 @@ var Task = function (_React$Component) {
     function Task(props) {
         _classCallCheck(this, Task);
 
-        var _this = _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this, props));
-
-        _this.state = { todo: props.todo };
-        return _this;
+        return _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this, props));
     }
 
     _createClass(Task, [{
         key: "render",
         value: function render() {
+            var classes = [];
+
+            classes.push("task");
+            if (this.props.todo.done) {
+                classes.push("done");
+            }
+
+            classes = classes.join(" ");
+
             return React.createElement(
-                "div",
-                { className: "task" },
+                "li",
+                { className: classes, key: this.props.todo.id.toString() },
                 React.createElement(
-                    "li",
-                    { className: "task-content", key: this.state.todo.id.toString() },
+                    "div",
+                    { className: "task-content" },
                     React.createElement(
                         "div",
                         { className: "task-text" },
-                        this.state.todo.text
+                        this.props.todo.text
                     ),
                     React.createElement(
                         "div",
                         { className: "task-done" },
-                        this.state.todo.done ? "(done!)" : "(todo!)"
+                        this.props.todo.done ? "(done!)" : "(todo!)"
                     )
                 )
             );

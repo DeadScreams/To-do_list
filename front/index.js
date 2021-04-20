@@ -1,8 +1,4 @@
-import _regeneratorRuntime from 'babel-runtime/regenerator';
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -27,74 +23,35 @@ var App = function (_React$Component) {
         //     {id: 2, text: "Learn NodeJS!", done: true},
         //     {id: 3, text: "Learn to Code!", done: true}
         // ]
-        // var todos = [];
-
-        // this.state = { todos: todos };
-
-        // fetch(new URL('http://localhost:3000/api/tasks'))
-        //     .then((result) => {
-        //         return result.json();
-        //     })
-        //     .then((data) => {
-        //         todos = data;
-        //         this.setState({ todos: todos }, () => {
-        //             console.log('Updated state!');
-        //             console.log(this.state);
-        //         })
-        //         console.log('Received data! ');
-        //         console.log(data);
-        //         // this.state = {todos: todos};
-        //     })
-        //     .catch((error) => {
-        //         alert('HTTP Error: ' + error);
-        //         console.error(error);
-        //     })
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-        _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
-            var response;
-            return _regeneratorRuntime.wrap(function _callee$(_context) {
-                while (1) {
-                    switch (_context.prev = _context.next) {
-                        case 0:
-                            _context.next = 2;
-                            return fetch(new URL('http://localhost:3000/api/tasks'));
+        var todos = [];
 
-                        case 2:
-                            response = _context.sent;
+        _this.state = { todos: todos };
 
-                            if (!response.ok) {
-                                _context.next = 10;
-                                break;
-                            }
-
-                            _context.next = 6;
-                            return response.json();
-
-                        case 6:
-                            _context.t0 = _context.sent;
-                            this.state = {
-                                todos: _context.t0
-                            };
-                            _context.next = 11;
-                            break;
-
-                        case 10:
-                            alert('HTTP Error: ' + response.status);
-
-                        case 11:
-                        case 'end':
-                            return _context.stop();
-                    }
-                }
-            }, _callee, this);
-        }))();
+        fetch(new URL('http://localhost:3000/api/tasks')).then(function (result) {
+            return result.json();
+        }).then(function (data) {
+            todos = data.tasks;
+            _this.setState({ todos: todos });
+            console.log('Received data! ');
+            console.log(data);
+            // this.state = {todos: todos};
+        }).catch(function (error) {
+            alert('HTTP Error: ' + error);
+            console.error(error);
+        });
         return _this;
     }
 
     _createClass(App, [{
         key: 'render',
         value: function render() {
+            // const items = [];
+            // this.state.todos.forEach((todo) => {
+            //     items.push(<p key={todo.id}>{todo.text}</p>);
+            // })
+
             return React.createElement(
                 'div',
                 { className: 'app' },

@@ -20,12 +20,7 @@ var TaskList = function (_React$Component) {
     function TaskList(props) {
         _classCallCheck(this, TaskList);
 
-        var _this = _possibleConstructorReturn(this, (TaskList.__proto__ || Object.getPrototypeOf(TaskList)).call(this, props));
-
-        _this.state = { todos: props.todos };
-        console.log('TaskList todos: ');
-        console.log(_this.state.todos);
-        return _this;
+        return _possibleConstructorReturn(this, (TaskList.__proto__ || Object.getPrototypeOf(TaskList)).call(this, props));
     }
 
     _createClass(TaskList, [{
@@ -38,7 +33,7 @@ var TaskList = function (_React$Component) {
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = this.state.todos.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (var _iterator = this.props.todos.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var _ref = _step.value;
 
                     var _ref2 = _slicedToArray(_ref, 2);
@@ -46,10 +41,8 @@ var TaskList = function (_React$Component) {
                     var index = _ref2[0];
                     var todo = _ref2[1];
 
-                    // items.push(<li key={"todo#"+index}>{value}</li>)
                     items.push(React.createElement(Task, { key: todo.id, todo: todo }));
                 }
-                // console.log('TaskList is rendered');
             } catch (err) {
                 _didIteratorError = true;
                 _iteratorError = err;
