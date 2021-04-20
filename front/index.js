@@ -22,6 +22,9 @@ var App = function (_React$Component) {
 
         _this.addTask = _this.addTask.bind(_this);
         _this.updateTasks = _this.updateTasks.bind(_this);
+        _this.deleteTask = _this.deleteTask.bind(_this);
+        _this.checkTask = _this.checkTask.bind(_this);
+        _this.findTask = _this.findTask.bind(_this);
 
         var tasks = [];
         _this.state = { tasks: tasks };
@@ -30,10 +33,17 @@ var App = function (_React$Component) {
         return _this;
     }
 
-    // fetches the tasks from API
-
-
     _createClass(App, [{
+        key: 'findTask',
+        value: function findTask(id) {
+            return this.state.tasks.find(function (task) {
+                return task.id === id;
+            });
+        }
+
+        // fetches the tasks from API
+
+    }, {
         key: 'updateTasks',
         value: function updateTasks() {
             var _this2 = this;
@@ -45,9 +55,7 @@ var App = function (_React$Component) {
                 _this2.setState({ tasks: tasks });
                 console.log('Received data! ');
                 console.log(data);
-                // this.state = {tasks: tasks};
             }).catch(function (error) {
-                // alert('HTTP Error: ' + error);
                 _this2.setState({ tasks: [] });
                 console.error(error);
             });
@@ -57,17 +65,12 @@ var App = function (_React$Component) {
         value: function addTask(text) {
             var _this3 = this;
 
-            // this.setState((prev_state, props) => {
-            // prev_state.push({})
-            // return {prev_state}
-            // })
-            alert('This totally should create a task with text \"' + text + '\"');
+            // alert('This totally should create a task with text \"'+text+'\"');
             fetch(new URL('http://localhost:3000/api/add_task/' + '?text=' + text), {
                 method: 'POST'
             }).then(function (response) {
                 if (response.ok) {
-                    alert('added successfully!');
-                    console.log('added task!');
+                    console.log('Added Task!');
                     _this3.updateTasks();
                 } else {
                     console.log('HTTP Error: ' + response.status);
@@ -75,12 +78,61 @@ var App = function (_React$Component) {
             });
         }
     }, {
+        key: 'deleteTask',
+        value: function deleteTask(id) {
+            var _this4 = this;
+
+            // alert('This totally should delete a task with id #' + id);
+            fetch(new URL('http://localhost:3000/api/delete_task/' + id), {
+                method: 'POST'
+            }).then(function (response) {
+                if (response.ok) {
+                    console.log('Removed Task!');
+                    _this4.updateTasks();
+                } else {
+                    console.log('HTTP Error: ' + response.status);
+                }
+            });
+        }
+    }, {
+        key: 'checkTask',
+        value: function checkTask(id) {
+            var task = this.findTask(id);
+            var text = task.text;
+            var done = task.done;
+
+            // alert('This should totally check the task id#'+id);
+            task.done = !task.done;
+            this.setState({ tasks: this.state.tasks });
+
+            // this.setState((prev_state, props) => {
+            //     return prev_state.map((task, i) => {
+            //         if (task.id === id) {
+            //             task.done = !task.done;
+            //         }
+            //         return task;
+            //     })
+            // });
+
+            // fetch(new URL('http://localhost:3000/api/update_task/' + id+'/?text=' + text + '&done=' + done), {
+            //     method: 'POST'
+            // }).then((response) => {
+            //     if (response.ok) {
+            //         console.log('Checked Task!');
+            //         this.updateTasks();
+            //     }
+            //     else {
+            //         console.log('HTTP Error: ' + response.status);
+            //     }
+            // })
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 { className: 'app' },
-                React.createElement(TaskList, { tasks: this.state.tasks }),
+                React.createElement(TaskList, { tasks: this.state.tasks, deleteTask: this.deleteTask, checkTask: this.checkTask }),
                 React.createElement(AddTask, { addTask: this.addTask })
             );
         }

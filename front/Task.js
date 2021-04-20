@@ -12,12 +12,18 @@ var Task = function (_React$Component) {
     function Task(props) {
         _classCallCheck(this, Task);
 
-        return _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this, props));
+
+        _this.deleteTask = _this.props.deleteTask.bind(_this);
+        _this.checkTask = _this.props.checkTask.bind(_this);
+        return _this;
     }
 
     _createClass(Task, [{
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             var classes = [];
 
             classes.push("task");
@@ -43,7 +49,28 @@ var Task = function (_React$Component) {
                         { className: "task-done" },
                         this.props.todo.done ? "(done!)" : "(todo!)"
                     ),
-                    React.createElement("div", { className: "task-delete" })
+                    React.createElement(
+                        "div",
+                        { className: "task-check" },
+                        React.createElement(
+                            "button",
+                            { className: "btn-check", onClick: function onClick() {
+                                    _this2.checkTask(_this2.props.todo.id);
+                                } },
+                            "\u2713"
+                        )
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "task-delete" },
+                        React.createElement(
+                            "button",
+                            { className: "btn-delete", onClick: function onClick() {
+                                    _this2.deleteTask(_this2.props.todo.id);
+                                } },
+                            "X"
+                        )
+                    )
                 )
             );
         }

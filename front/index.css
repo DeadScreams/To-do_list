@@ -35,3 +35,7 @@
 .task-done {
     flex: 0.3;
 }
+
+.task-check .task-delete {
+    flex: 0.1;
+}

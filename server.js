@@ -1,9 +1,7 @@
-const { Worker } = require('cluster')
 const express = require('express')
 const path = require('path')
 const Database_Worker= require('./db.js')
 const crypto = require('crypto');
-const { Console } = require('console');
 
 const app = express()
 const router = express.Router()
@@ -52,6 +50,7 @@ router.get('/api/init_table', (req, res) => {
 router.get('/', (req,res) => {
     res.sendFile(__dirname+"/front/index.html")
 })
+
 
 app.use('/', router)
 app.listen(port, hostname, () => console.log("Server Up"))
