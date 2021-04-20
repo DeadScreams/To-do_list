@@ -44,6 +44,12 @@ router.get('/api/db_visual', (req, res) => {
     })
 })
 
+// run once
+router.get('/api/init_table', (req, res) => {
+    DataWorker.excute_request("CREATE TABLE tasks (Id varchar(250), Text varchar(250), Done BIT, UNIQUE (Id));")
+    res.sendStatus(200);
+})
+
 
 app.use('/', router)
 app.listen(port, hostname, () => console.log("Server Up"))

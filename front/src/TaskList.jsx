@@ -12,7 +12,7 @@ class TaskList extends React.Component {
     render() {
         const items = [];
 
-        for(var [index, todo] of this.props.todos.entries()) {
+        for(var [index, todo] of this.props.tasks.entries()) {
             items.push(<Task key={todo.id} todo={todo} />);
         }
 

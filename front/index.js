@@ -18,44 +18,70 @@ var App = function (_React$Component) {
     function App(props) {
         _classCallCheck(this, App);
 
-        // var todos = [
-        //     {id: 1, text: "Learn React!", done: false},
-        //     {id: 2, text: "Learn NodeJS!", done: true},
-        //     {id: 3, text: "Learn to Code!", done: true}
-        // ]
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-        var todos = [];
+        _this.addTask = _this.addTask.bind(_this);
+        _this.updateTasks = _this.updateTasks.bind(_this);
 
-        _this.state = { todos: todos };
+        var tasks = [];
+        _this.state = { tasks: tasks };
 
-        fetch(new URL('http://localhost:3000/api/tasks')).then(function (result) {
-            return result.json();
-        }).then(function (data) {
-            todos = data.tasks;
-            _this.setState({ todos: todos });
-            console.log('Received data! ');
-            console.log(data);
-            // this.state = {todos: todos};
-        }).catch(function (error) {
-            alert('HTTP Error: ' + error);
-            console.error(error);
-        });
+        _this.updateTasks();
         return _this;
     }
 
+    // fetches the tasks from API
+
+
     _createClass(App, [{
+        key: 'updateTasks',
+        value: function updateTasks() {
+            var _this2 = this;
+
+            fetch(new URL('http://localhost:3000/api/tasks')).then(function (result) {
+                return result.json();
+            }).then(function (data) {
+                tasks = data.tasks;
+                _this2.setState({ tasks: tasks });
+                console.log('Received data! ');
+                console.log(data);
+                // this.state = {tasks: tasks};
+            }).catch(function (error) {
+                // alert('HTTP Error: ' + error);
+                tasks = [];
+                console.error(error);
+            });
+        }
+    }, {
+        key: 'addTask',
+        value: function addTask(text) {
+            var _this3 = this;
+
+            // this.setState((prev_state, props) => {
+            // prev_state.push({})
+            // return {prev_state}
+            // })
+            alert('This totally should create a task with text \"' + text + '\"');
+            fetch(new URL('http://localhost:3000/api/add_task/' + '?text=' + text), {
+                method: 'POST'
+            }).then(function (response) {
+                if (response.ok) {
+                    alert('added successfully!');
+                    console.log('added task!');
+                    _this3.updateTasks();
+                } else {
+                    console.log('HTTP Error: ' + response.status);
+                }
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            // const items = [];
-            // this.state.todos.forEach((todo) => {
-            //     items.push(<p key={todo.id}>{todo.text}</p>);
-            // })
-
             return React.createElement(
                 'div',
                 { className: 'app' },
-                React.createElement(TaskList, { todos: this.state.todos })
+                React.createElement(TaskList, { tasks: this.state.tasks }),
+                React.createElement(AddTask, { addTask: this.addTask })
             );
         }
     }]);

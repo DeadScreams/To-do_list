@@ -33,7 +33,7 @@ var TaskList = function (_React$Component) {
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = this.props.todos.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (var _iterator = this.props.tasks.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var _ref = _step.value;
 
                     var _ref2 = _slicedToArray(_ref, 2);
