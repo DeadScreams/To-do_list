@@ -12,6 +12,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // import TaskList from './TaskList.js'
 // const TaskList = React.lazy(() => import('./TaskList.js'))
 
+var ip = "192.168.43.37";
+var port = "3000";
+
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
@@ -39,7 +42,7 @@ var App = function (_React$Component) {
 
 
     _createClass(App, [{
-        key: 'componentDidMount',
+        key: "componentDidMount",
         value: function componentDidMount() {
             var _this2 = this;
 
@@ -50,14 +53,14 @@ var App = function (_React$Component) {
         // clear the interval after yourself
 
     }, {
-        key: 'componentWillUnmount',
+        key: "componentWillUnmount",
         value: function componentWillUnmount() {
             if (this.interval !== null) {
                 clearInterval(this.interval);
             }
         }
     }, {
-        key: 'findTask',
+        key: "findTask",
         value: function findTask(id) {
             return this.state.tasks.find(function (task) {
                 return task.id === id;
@@ -67,11 +70,11 @@ var App = function (_React$Component) {
         // fetches the tasks from API
 
     }, {
-        key: 'updateTasks',
+        key: "updateTasks",
         value: function updateTasks() {
             var _this3 = this;
 
-            fetch(new URL('http://localhost:3000/api/tasks')).then(function (result) {
+            fetch(new URL("http://" + ip + ":" + port + "/api/tasks")).then(function (result) {
                 return result.json();
             }).then(function (data) {
                 var tasks = data.tasks;
@@ -84,12 +87,12 @@ var App = function (_React$Component) {
             });
         }
     }, {
-        key: 'addTask',
+        key: "addTask",
         value: function addTask(text) {
             var _this4 = this;
 
             // alert('This totally should create a task with text \"'+text+'\"');
-            fetch(new URL('http://localhost:3000/api/add_task/' + '?text=' + text), {
+            fetch(new URL("http://" + ip + ":" + port + "/api/add_task/" + '?text=' + text), {
                 method: 'POST'
             }).then(function (response) {
                 if (response.ok) {
@@ -101,12 +104,12 @@ var App = function (_React$Component) {
             });
         }
     }, {
-        key: 'deleteTask',
+        key: "deleteTask",
         value: function deleteTask(id) {
             var _this5 = this;
 
             // alert('This totally should delete a task with id #' + id);
-            fetch(new URL('http://localhost:3000/api/delete_task/' + id), {
+            fetch(new URL("http://" + ip + ":" + port + "/api/delete_task/" + id), {
                 method: 'POST'
             }).then(function (response) {
                 if (response.ok) {
@@ -118,7 +121,7 @@ var App = function (_React$Component) {
             });
         }
     }, {
-        key: 'checkTask',
+        key: "checkTask",
         value: function checkTask(id) {
             var _this6 = this;
 
@@ -127,7 +130,7 @@ var App = function (_React$Component) {
             task.done = !task.done;
             this.setState({ tasks: this.state.tasks });
 
-            fetch(new URL('http://localhost:3000/api/update_task/' + id + '/?text=' + task.text + '&done=' + task.done), {
+            fetch(new URL("http://" + ip + ":" + port + "/api/update_task/" + id + '/?text=' + task.text + '&done=' + task.done), {
                 method: 'POST'
             }).then(function (response) {
                 if (response.ok) {
@@ -139,7 +142,7 @@ var App = function (_React$Component) {
             });
         }
     }, {
-        key: 'renameTask',
+        key: "renameTask",
         value: function renameTask(id, new_text) {
             var _this7 = this;
 
@@ -147,7 +150,7 @@ var App = function (_React$Component) {
             task.text = new_text;
             this.setState({ tasks: this.state.tasks });
 
-            fetch(new URL('http://localhost:3000/api/update_task/' + id + '/?text=' + task.text + '&done=' + task.done), {
+            fetch(new URL("http://" + ip + ":" + port + "/api/update_task/" + id + '/?text=' + task.text + '&done=' + task.done), {
                 method: 'POST'
             }).then(function (response) {
                 if (response.ok) {
@@ -159,11 +162,11 @@ var App = function (_React$Component) {
             });
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
-                { className: 'app' },
+                "div",
+                { className: "app" },
                 React.createElement(AddTask, { addTask: this.addTask }),
                 React.createElement(TaskList, { tasks: this.state.tasks, deleteTask: this.deleteTask, checkTask: this.checkTask, renameTask: this.renameTask })
             );

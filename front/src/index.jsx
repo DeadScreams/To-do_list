@@ -4,6 +4,9 @@
 // import TaskList from './TaskList.js'
 // const TaskList = React.lazy(() => import('./TaskList.js'))
 
+const ip = "192.168.43.37";
+const port = "3000";
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -39,7 +42,7 @@ class App extends React.Component {
 
     // fetches the tasks from API
     updateTasks() {
-        fetch(new URL('http://localhost:3000/api/tasks'))
+        fetch(new URL(`http://${ip}:${port}/api/tasks`))
             .then((result) => {
                 return result.json();
             })
@@ -57,7 +60,7 @@ class App extends React.Component {
 
     addTask(text) {
         // alert('This totally should create a task with text \"'+text+'\"');
-        fetch(new URL('http://localhost:3000/api/add_task/' + '?text='+text), {
+        fetch(new URL(`http://${ip}:${port}/api/add_task/` + '?text='+text), {
             method: 'POST'
         }).then((response) => {
             if (response.ok) {
@@ -72,7 +75,7 @@ class App extends React.Component {
 
     deleteTask(id) {
         // alert('This totally should delete a task with id #' + id);
-        fetch(new URL('http://localhost:3000/api/delete_task/' + id), {
+        fetch(new URL(`http://${ip}:${port}/api/delete_task/` + id), {
             method: 'POST'
         }).then((response) => {
             if (response.ok) {
@@ -91,7 +94,7 @@ class App extends React.Component {
         task.done = !task.done;
         this.setState({ tasks: this.state.tasks });
 
-        fetch(new URL('http://localhost:3000/api/update_task/' + id+'/?text=' + task.text + '&done=' + task.done), {
+        fetch(new URL(`http://${ip}:${port}/api/update_task/` + id+'/?text=' + task.text + '&done=' + task.done), {
             method: 'POST'
         }).then((response) => {
             if (response.ok) {
@@ -109,7 +112,7 @@ class App extends React.Component {
         task.text = new_text;
         this.setState({ tasks: this.state.tasks });
 
-        fetch(new URL('http://localhost:3000/api/update_task/' + id+'/?text=' + task.text + '&done=' + task.done), {
+        fetch(new URL(`http://${ip}:${port}/api/update_task/` + id+'/?text=' + task.text + '&done=' + task.done), {
             method: 'POST'
         }).then((response) => {
             if (response.ok) {
