@@ -27,5 +27,5 @@ _A small project that was done in two days😃_
 
 ---
 
-## Coloborating
+## Contributing
 It does not have a wide functionality, but if you want to modify it, then you can safely fork
